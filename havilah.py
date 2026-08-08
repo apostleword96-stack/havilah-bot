@@ -1,15 +1,16 @@
 import telebot
-import os
-import time
+    import os
 
-BOT_TOKEN = os.getenv("BOT_TOKEN") # We go set this on Railway
+    BOT_TOKEN = os.getenv("BOT_TOKEN")
+    bot = telebot.TeleBot(BOT_TOKEN)
 
-time.sleep(10)
-bot = telebot.TeleBot(BOT_TOKEN)
+    @bot.message_handler(commands=['start'])
+    def send_welcome(message):
+        bot.reply_to(message, "Hello! Havilah is online 🔥 How can I help you?")
 
-@bot.message_handler(commands=['start'])
-def start(message):
-    bot.reply_to(message, "Havilah 2.0 dey online on Railway! 🔥 Send me text")
+    @bot.message_handler(func=lambda message: True)
+    def echo_all(message):
+        bot.reply_to(message, f"You said: {message.text}")
 
-print("HAVILAH 2.0 IS ONLINE!!!")
-bot.polling(none_stop=True)
+    print("Bot is running...")
+    bot.infinity_polling()
