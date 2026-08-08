@@ -1,6 +1,4 @@
-[14:15, 08/08/2026] apostleword96: print("Havilah AGENT is running...")
-bot.infinity_polling()
-[14:17, 08/08/2026] apostleword96: import telebot
+import telebot
 import os
 import random
 from groq import Groq
